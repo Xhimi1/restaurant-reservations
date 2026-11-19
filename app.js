@@ -2,7 +2,7 @@
 // The restaurant reservation page. It uses the helper functions from lib.js.
 //
 // A reservation is saved like this:
-// { id, name, phone, email, date, time, guests, area, notes, cancelled }
+// { id, name, email, date, time, guests, area, notes, cancelled }
 // "cancelled" is true when the guest cancelled the table.
 
 // The restaurant has this many seats at the same date and time
@@ -74,9 +74,9 @@ function showReservations() {
       statusClass = "red";
     }
 
-    // Phone and special requests are shown in small text under the name
+    // Email and special requests are shown in small text under the name
     let guestCell = safeText(reservation.name);
-    guestCell += "<span class='small'>" + safeText(reservation.phone) + "</span>";
+    guestCell += "<span class='small'>" + safeText(reservation.email) + "</span>";
     if (reservation.notes !== "") {
       guestCell += "<span class='small'>" + safeText(reservation.notes) + "</span>";
     }
@@ -139,7 +139,6 @@ function setDateToToday() {
 
 function checkForm() {
   const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
   const email = document.getElementById("email").value;
   const date = dateInput.value;
   const time = document.getElementById("time").value;
@@ -171,9 +170,6 @@ function checkForm() {
     name:
       checkRequired(name, "Please write your full name.") ||
       checkMinLength(name, 3, "The name needs at least 3 letters."),
-    phone:
-      checkRequired(phone, "Please write your phone number.") ||
-      checkPhone(phone, "Use 7 to 15 digits. You can also use +, spaces, ( ) and -."),
     email:
       checkRequired(email, "Please write your email.") ||
       checkEmail(email, "Please write a real email, like ana@email.com."),
@@ -186,7 +182,6 @@ function checkForm() {
 
   // Show every message (an empty message clears the old one)
   showError("name", errors.name);
-  showError("phone", errors.phone);
   showError("email", errors.email);
   showError("date", errors.date);
   showError("time", errors.time);
@@ -197,7 +192,6 @@ function checkForm() {
   // The form is fine when all messages are empty
   return (
     errors.name === "" &&
-    errors.phone === "" &&
     errors.email === "" &&
     errors.date === "" &&
     errors.time === "" &&
@@ -221,7 +215,6 @@ form.addEventListener("submit", function (event) {
   const newReservation = {
     id: Date.now(),
     name: document.getElementById("name").value.trim(),
-    phone: document.getElementById("phone").value.trim(),
     email: document.getElementById("email").value.trim(),
     date: dateInput.value,
     time: document.getElementById("time").value,

@@ -105,17 +105,6 @@ function checkEmail(value, message) {
   return "";
 }
 
-// A phone number can have digits, spaces, + ( ) and -, with 7 to 15 digits
-function checkPhone(value, message) {
-  const text = value.trim();
-  const onlyAllowed = /^[0-9+()\s-]+$/.test(text);
-  const digits = text.replace(/[^0-9]/g, "");
-  if (onlyAllowed === false || digits.length < 7 || digits.length > 15) {
-    return message;
-  }
-  return "";
-}
-
 // A number between a minimum and a maximum (decimals are fine, like 22.5)
 function checkNumberBetween(value, minimum, maximum, message) {
   const number = Number(value);

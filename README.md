@@ -5,13 +5,13 @@ It is the midterm project for CEN 311 Web Technologies and Programming.
 
 ## Pages
 
-- `index.html` - home page with a hero, a photo, "How it works" and opening hours
+- `index.html` - home page with a hero and a photo
 - `reserve.html` - the form to book a table, three numbers and the list of reservations
 
 ## Features
 
 - Booking form with validation and a clear message under every field:
-  full name, phone, email, date, time, number of guests, seating area and special requests
+  full name, email, date, time, number of guests, seating area and special requests
 - The date cannot be in the past, and a time today cannot already be gone
 - The restaurant has 40 seats for each date and time, so a full time slot is refused
 - Statuses: Confirmed, Past and Cancelled

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservations - Olive Table</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation bar -->
+  <nav class="navbar">
+    <div class="wide navbar-inner">
+      <a class="logo" href="index.html">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2M6 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+        Olive Table
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="reserve.html">Reservations</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <img class="banner" src="https://images.unsplash.com/photo-1613274554329-70f997f5789f?auto=format&fit=crop&w=1200&q=80" alt="Round tables and a blue booth seat in a restaurant">
+
+    <header class="section">
+      <h1>Reservations</h1>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-number" id="upcoming-count">0</span>
+          <span class="muted">upcoming reservations</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" id="today-count">0</span>
+          <span class="muted">reservations today</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" id="guests-count">0</span>
+          <span class="muted">guests today</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2>Book a table</h2>
+      <form id="reservation-form" novalidate>
+        <div class="field">
+          <label class="label" for="name">Full name</label>
+          <input class="input" type="text" id="name" placeholder="For example: Ana Hoxha">
+          <p class="error" id="name-error"></p>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label class="label" for="phone">Phone number</label>
+            <input class="input" type="text" id="phone" placeholder="For example: +355 69 123 4567">
+            <p class="error" id="phone-error"></p>
+          </div>
+          <div class="field">
+            <label class="label" for="email">Email</label>
+            <input class="input" type="text" id="email" placeholder="For example: ana@email.com">
+            <p class="error" id="email-error"></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label class="label" for="date">Date</label>
+            <input class="input" type="date" id="date">
+            <p class="error" id="date-error"></p>
+          </div>
+          <div class="field">
+            <label class="label" for="time">Time</label>
+            <select class="input" id="time">
+              <option value="">Choose a time</option>
+            <option value="12:00">12:00</option>
+            <option value="12:30">12:30</option>
+            <option value="13:00">13:00</option>
+            <option value="13:30">13:30</option>
+            <option value="14:00">14:00</option>
+            <option value="14:30">14:30</option>
+            <option value="15:00">15:00</option>
+            <option value="15:30">15:30</option>
+            <option value="16:00">16:00</option>
+            <option value="16:30">16:30</option>
+            <option value="17:00">17:00</option>
+            <option value="17:30">17:30</option>
+            <option value="18:00">18:00</option>
+            <option value="18:30">18:30</option>
+            <option value="19:00">19:00</option>
+            <option value="19:30">19:30</option>
+            <option value="20:00">20:00</option>
+            <option value="20:30">20:30</option>
+            <option value="21:00">21:00</option>
+            <option value="21:30">21:30</option>
+            </select>
+            <p class="error" id="time-error"></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label class="label" for="guests">Number of guests</label>
+            <input class="input" type="number" id="guests" placeholder="From 1 to 12" min="1" max="12">
+            <p class="error" id="guests-error"></p>
+          </div>
+          <div class="field">
+            <label class="label" for="area">Seating area</label>
+            <select class="input" id="area">
+              <option value="">Choose an area</option>
+              <option value="Indoor">Indoor</option>
+              <option value="Terrace">Terrace</option>
+            </select>
+            <p class="error" id="area-error"></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="notes">Special requests (optional)</label>
+          <textarea class="input" id="notes" placeholder="For example: a birthday cake, a baby chair"></textarea>
+          <p class="error" id="notes-error"></p>
+        </div>
+
+        <button class="button button-primary" type="submit">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          Book table
+        </button>
+        <p class="success hidden" id="success-message"></p>
+      </form>
+    </section>
+
+    <section class="section">
+      <h2>All reservations</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Guest</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Guests</th>
+            <th>Area</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="reservation-list"></tbody>
+      </table>
+      <p class="muted" id="empty-message">No reservations yet. Book the first table above.</p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wide">Olive Table. Photo by Klara Kulikova on Unsplash.</div>
+  </footer>
+
+  <script src="lib.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

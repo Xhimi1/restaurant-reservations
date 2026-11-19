@@ -2,7 +2,7 @@
 // The restaurant reservation page. It uses the helper functions from lib.js.
 //
 // A reservation is saved like this:
-// { id, name, email, date, time, guests, area, notes, cancelled }
+// { id, name, email, date, time, guests, notes, cancelled }
 // "cancelled" is true when the guest cancelled the table.
 
 // The restaurant has this many seats at the same date and time
@@ -86,7 +86,6 @@ function showReservations() {
     rows += "<td>" + formatDate(reservation.date) + "</td>";
     rows += "<td>" + reservation.time + "</td>";
     rows += "<td>" + reservation.guests + "</td>";
-    rows += "<td>" + reservation.area + "</td>";
     rows += "<td class='" + statusClass + "'>" + status + "</td>";
     rows += "<td>";
     // Only a confirmed reservation can be cancelled
@@ -143,7 +142,6 @@ function checkForm() {
   const date = dateInput.value;
   const time = document.getElementById("time").value;
   const guests = document.getElementById("guests").value;
-  const area = document.getElementById("area").value;
   const notes = document.getElementById("notes").value;
 
   // The date cannot be in the past, and a time today cannot already be gone
@@ -176,7 +174,6 @@ function checkForm() {
     date: dateError,
     time: timeError,
     guests: guestsError,
-    area: checkRequired(area, "Please choose an area."),
     notes: checkMaxLength(notes, 200, "Special requests can have 200 letters at most.")
   };
 
@@ -186,7 +183,6 @@ function checkForm() {
   showError("date", errors.date);
   showError("time", errors.time);
   showError("guests", errors.guests);
-  showError("area", errors.area);
   showError("notes", errors.notes);
 
   // The form is fine when all messages are empty
@@ -196,7 +192,6 @@ function checkForm() {
     errors.date === "" &&
     errors.time === "" &&
     errors.guests === "" &&
-    errors.area === "" &&
     errors.notes === ""
   );
 }
@@ -219,7 +214,6 @@ form.addEventListener("submit", function (event) {
     date: dateInput.value,
     time: document.getElementById("time").value,
     guests: Number(document.getElementById("guests").value),
-    area: document.getElementById("area").value,
     notes: document.getElementById("notes").value.trim(),
     cancelled: false
   };

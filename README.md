@@ -11,7 +11,7 @@ It is the midterm project for CEN 311 Web Technologies and Programming.
 ## Features
 
 - Booking form with validation and a clear message under every field:
-  full name, email, date, time, number of guests, seating area and special requests
+  full name, email, date, time, number of guests and special requests
 - The date cannot be in the past, and a time today cannot already be gone
 - The restaurant has 40 seats for each date and time, so a full time slot is refused
 - Statuses: Confirmed, Past and Cancelled
